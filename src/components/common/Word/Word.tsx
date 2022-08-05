@@ -1,6 +1,4 @@
-import react, { useEffect, useRef, useState, FC } from "react";
-import { text } from "stream/consumers";
-import { createImportSpecifier } from "typescript";
+import { useEffect, useRef, useState, FC } from "react";
 import './WordStyle.css'
 
 
@@ -58,9 +56,7 @@ const Word:  FC<WordProps> = ({
 
 
     useEffect(()=> {
-        console.log(isWordDisabled)
         if(isWordDisabled === true && word.current.classList.contains('swapped') === false) {
-            console.log('disactivate all words')
             word.current.classList.remove('activated')
             word.current.classList.add('disactivated')
             word.current.onmouseup = null
@@ -134,17 +130,12 @@ const Word:  FC<WordProps> = ({
                 isElementInserted.current = false
             }
             word.current.classList.remove('inserted')
-
       
             for(let i = 0; i < chooseElementsArray.length; i ++) {
                 chooseElementsArray[i].classList.add('activated')
                 chooseElementsArray[i].style.top = chooseElementFieldCells[i].coords.y + 'px'
                 chooseElementsArray[i].style.left = chooseElementFieldCells[i].coords.x + 'px'              
             }
-
-
-            // activateAllElements(word.current, )
-
 
             let wordCoords = getElementCurrentCoords(word.current)
             let shiftX = e.pageX - wordCoords.left
@@ -161,16 +152,12 @@ const Word:  FC<WordProps> = ({
             if(isWordMoved.current === false) {
                 document.body.appendChild(word.current)
             }
-
-            
+   
             // 4. показываем элемент над другими элементами
             word.current.style.zIndex = '1000';
             
             // 5. передвигаем элемент под координаты курсора
             moveAt(e);
-
-           
-
 
             // 6. перемещение по экрану
             document.onmousemove = (e)=> {
@@ -206,7 +193,6 @@ const Word:  FC<WordProps> = ({
                     setIsButtonActive(false)
                     setIsCheckResultHidden(true)
                     setIsElementTransiting(true)
-                    console.log('start')
                 }
               
                 // 8.1 сброс слова в поле ввода
@@ -234,7 +220,6 @@ const Word:  FC<WordProps> = ({
                     if(word.current.classList.contains('dragged') === true && isElementInserted.current === true && word.current.classList.contains('swapped') === true) {
                         word.current.classList.remove('swapped')             
                     }
-                    
                     // Сброс слова ИЗ поля ввода В поле ввода (постановка вставленного слова на своё место,
                     //в случае его смещения из строки, в которой оно находится без смены местоположения с другим элементом)
                     if(word.current.classList.contains('dragged') === true  &&  isElementInserted.current === true && word.current.classList.contains('swapped') === false) {
@@ -267,9 +252,7 @@ const Word:  FC<WordProps> = ({
                     }  
                     //Сброс слова ИЗ поля ввода В облако слов
                     if(isWordMoved.current === true && isElementInserted.current === true) {
-
-                        transitionAt(word.current, chooseElementFieldCells, getNextWordIndex(chooseElementFieldCells))
-                        
+                        transitionAt(word.current, chooseElementFieldCells, getNextWordIndex(chooseElementFieldCells))   
                         sortElements(word.current, insertFieldCells, insertedElementsArray)
                         if(isElementInserted.current ===  true) {
                             word.current.ontransitionend = ()=>{    
@@ -365,8 +348,6 @@ const Word:  FC<WordProps> = ({
                                 insertFieldCells[swappedElementIndex].element = currentElement
                                 swappedElement.ontransitionend = ()=>{
                                     swappedElement.classList.remove('transition')
-                                    setIsButtonActive(true)
-                                    setIsElementTransiting(false)
                                 }                                  
                                 word.current.classList.add('swapped')                   
                             }
@@ -423,7 +404,6 @@ const Word:  FC<WordProps> = ({
                 return(index)
             }
 
-
             function getReturnSortingIndex(cellsArray: any[], sequenceIndex: number) {
                 let returnIndex = 0
                 for(let i = 0; i < cellsArray.length; i++) {            
@@ -467,7 +447,6 @@ const Word:  FC<WordProps> = ({
 
             function transitionAt(element: HTMLElement, cellsArray: any[], index: number) {   
                 let coords = cellsArray[index].coords
-                // element.style.transition = 'all ease 2s'
                 element.classList.add('transition')
                 element.style.left = coords.x + window.pageXOffset + 'px' 
                 element.style.top = coords.y + window.pageYOffset + 'px'
@@ -489,7 +468,6 @@ const Word:  FC<WordProps> = ({
                     if((chooseElementFieldCells[i].element !== null) && (chooseElementFieldCells[i].element !== undefined)) {
                         chooseElementFieldCells[i].container.appendChild(chooseElementFieldCells[i].element) 
                         chooseElementFieldCells[i].element.classList.remove('activated')
-                        // chooseElementFieldCells[i].element.style.position = 'static'
                         chooseElementFieldCells[i].elementonmouseup = null;
                     }  
                 }
@@ -507,7 +485,6 @@ const Word:  FC<WordProps> = ({
                 setIsWordDisabled(true)
                 isWordTransiting.current = true;
                 if(word.current.classList.contains('swapped') === false) {
-                    // word.current.style.pointerEvents = 'none'
                 }
             }
 
@@ -520,8 +497,6 @@ const Word:  FC<WordProps> = ({
                 }
                 elements.forEach((elem: HTMLElement)=>{
                     elem.classList.remove('transition')
-                    // elem.style.pointerEvents = 'auto'
-                    // elem.style.transition = 'auto'
                     elem.style.zIndex = 'auto'
                 })
             }
