@@ -27,7 +27,7 @@ let sentencesData = [
     {
         ru:['Как,', 'вас', 'зовут?'],
         en:'What’s your name?',
-        wordsList: ['your', 'Tommy’s', 'What’s', 'your,', 'our', 'his']
+        wordsList: ['your', 'Tommy’s', 'What’s', 'your', 'our', 'name?']
     },
     {
         ru:['Ему,', 'двенадцать', 'лет'],

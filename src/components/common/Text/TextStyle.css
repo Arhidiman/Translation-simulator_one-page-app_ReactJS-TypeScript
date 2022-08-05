@@ -24,8 +24,6 @@
     opacity: 100%;
 }
 
-
-
 .sentense  {
     position: relative;
     z-index: 1000;
@@ -33,8 +31,7 @@
     margin-right: 6px;
     border-bottom: dotted #6C6C6C 2px;
     opacity: 100%;
-    transition: all ease 0.3s
-   
+    transition: all ease 0.3s 
 }
 
 .text-fade{

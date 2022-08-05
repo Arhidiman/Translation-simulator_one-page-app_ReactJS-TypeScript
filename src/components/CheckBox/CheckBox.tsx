@@ -1,8 +1,7 @@
-import react, { useEffect, useRef, useState, FC, ReactNode } from "react";
+import {useState, FC} from "react";
 import './CheckBoxStyle.css'
 import Button from "../common/Button/Button";
 import Text from '../common/Text/Text'
-
 
 interface checkBoxProps {
   sentencesData: any[],
@@ -17,10 +16,8 @@ interface checkBoxProps {
   comparableSentense: string,
   setSentenceCounter: Function
   setSwitchToNext: Function,
-  switchToNext: boolean
-            
+  switchToNext: boolean      
 }
-
 
 const CheckBox: FC<checkBoxProps> = ({
   sentencesData,
@@ -59,8 +56,6 @@ const CheckBox: FC<checkBoxProps> = ({
         setSentenceCounter = {setSentenceCounter}
         setSwitchToNext = {setSwitchToNext}
         switchToNext = {switchToNext}
-        
-       
       >
           Check
       </Button> 

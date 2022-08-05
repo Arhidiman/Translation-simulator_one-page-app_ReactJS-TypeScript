@@ -1,6 +1,6 @@
-import react, { useEffect, useRef, useState, FC, ReactNode } from "react";
+import {FC, ReactNode } from "react";
 import './AppBodyStyle.css'
-import Text from "../common/Text/Text";
+
 
 
 interface appBodyProps {

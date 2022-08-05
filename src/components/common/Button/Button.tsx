@@ -1,7 +1,6 @@
-import react, { useEffect, useRef, useState, FC, ReactNode } from "react";
+
+import { useEffect, useRef, useState, FC, ReactNode } from "react";
 import './ButtonStyle.css'
-
-
 
 interface IButton {
     children?: ReactNode,
@@ -21,7 +20,6 @@ interface IButton {
     setSwitchToNext: Function,
     switchToNext: boolean
 }
-
 
 const Button: FC<IButton> = ({
     children, 
@@ -45,12 +43,14 @@ const Button: FC<IButton> = ({
     const [wordElements, setWordElements] = useState<any>(document.getElementsByClassName('word'))
     const [wordContainers, setWordContainers] = useState<any>(document.getElementsByClassName('word-container'))
     const [isResultRight, setIsResultRight] = useState<boolean>(false)
+    const [voice, setVoice] = useState<{}>(window.speechSynthesis.getVoices())
    
     
     useEffect(()=>{
         if(switchToNext === true) {
             setSwitchToNext(false)
         }
+        setVoice(window.speechSynthesis.getVoices()[1])
         let wordElementsArray: HTMLElement[] = []
         let wordContainersArray: HTMLElement[] = []
         for(let i = 0; i < wordElements.length; i++) {
@@ -90,14 +90,12 @@ const Button: FC<IButton> = ({
             }
         }
         button.current.onclick = !isResultRight? ()=> checkSentence(compareResult, pushButton, button.current, checkResult) :
-        ()=> clearAll(wordElementsArray, wordContainersArray, button.current, showNextSentence)
-        
-           
+        ()=> clearAll(wordElementsArray, wordContainersArray, button.current, showNextSentence)      
     })
 
     function checkSentence(compareResult: Function, pushButton: Function, buttonElement: HTMLButtonElement, checkResultMessage: HTMLElement ) { 
         compareResult(checkResultMessage)
-        pushButton(buttonElement, checkResultMessage)
+        pushButton(buttonElement, checkResultMessage, pronounceUtterance)
     }
 
     function compareResult(checkResultMessage: HTMLElement) {
@@ -112,11 +110,9 @@ const Button: FC<IButton> = ({
             checkResultMessage.style.color = 'red'
             checkedSentence.current = ''
         }
-        console.log(checkedSentence.current)
-        console.log(comparableSentense)
     }
 
-    function pushButton(buttonElement: HTMLButtonElement, checkResultMessage: HTMLElement) {
+    function pushButton(buttonElement: HTMLButtonElement, checkResultMessage: HTMLElement, pronounceUtterance: Function) {
         buttonElement.classList.add('check-button_inactive')
         buttonElement.classList.add('check-button_shadow-none')
         setIsWordDisabled(true)
@@ -135,7 +131,7 @@ const Button: FC<IButton> = ({
                         setIsWordDisabled(false)
                         setIsCheckResultHidden(false)
                         if(comparableSentense === checkedSentence.current) {
-                            // button.current.innerHTML = 'NEXT'
+                            pronounceUtterance(comparableSentense, voice)
                             buttonElement.classList.add('check-button_text-fade')
                             buttonElement.ontransitionend = ()=>{
                                 buttonElement.ontransitionend = ()=>{
@@ -166,6 +162,13 @@ const Button: FC<IButton> = ({
         }
         showNextSentence(buttonElement)
     }
+    function pronounceUtterance(utterance: string, pronunciationVoice : SpeechSynthesisVoice) {
+        const speech = new SpeechSynthesisUtterance(utterance);
+        speech.pitch = 0.5
+        speech.rate = 0.5
+        speech.voice = pronunciationVoice
+        window.speechSynthesis.speak(speech);
+    }
 
     function showNextSentence(buttonElement: HTMLButtonElement) {
         buttonElement.classList.remove('check-button_next')
@@ -178,7 +181,6 @@ const Button: FC<IButton> = ({
                 buttonElement.ontransitionend = null 
                 setSentenceCounter(Math.round(Math.random()*(sentencesData.length - 1)))
                 buttonElement.onclick = null;
-                console.log(button.current.onclick)
                 setSwitchToNext(true)
                 setIsCheckResultHidden(false)
             } 

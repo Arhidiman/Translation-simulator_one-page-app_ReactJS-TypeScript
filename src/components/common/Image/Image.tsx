@@ -1,4 +1,4 @@
-import react, { useEffect, useRef, useState, FC } from "react";
+import {FC} from "react";
 
 import './ImageStyle.css'
 
@@ -7,7 +7,6 @@ interface ImageProps {
     className: string
 }
 const Image: FC<ImageProps> =({url, className})=> {
-
     return(
         <img src = {url} className = {className}></img>
     )

@@ -1,16 +1,8 @@
-import react, { useEffect, useRef, useState, FC } from "react";
+import {useRef, FC } from "react";
 import './LineStyle.css'
 
-interface LineProps {
-  
-}
-
-
-    const Line: FC<LineProps> =  () => {
-
+const Line: FC =  () => {
     const line = useRef<HTMLDivElement>(null);
-
-
     return(
         <div ref = {line} className="line"  ></div>
     )

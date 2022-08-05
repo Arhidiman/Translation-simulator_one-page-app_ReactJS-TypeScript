@@ -3,12 +3,6 @@
     display: flex;
 }
 
-.sentense-container {
-    /* height: 60%;
-    border: solid #595959 2px;
-    border-radius: 15px; */
-}
-
 .bubble {
     position: relative;
     box-sizing: border-box;
@@ -19,9 +13,7 @@
     border-radius: 15px;
     border: 3px solid #6C6C6C;
     display: inline-block;
-    
 }
-
 
 .bubble::after {
     position: absolute;

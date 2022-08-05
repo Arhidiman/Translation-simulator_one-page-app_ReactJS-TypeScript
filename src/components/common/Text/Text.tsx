@@ -1,4 +1,4 @@
-import react, { useEffect, useRef, useState, FC } from "react";
+import {useEffect, useRef, FC } from "react";
 import './TextStyle.css'
 
 interface TextProps {
@@ -30,10 +30,6 @@ const Text: FC<TextProps> = ({textType, className, inner, setTextShadowToggler, 
         if(switchToNext === false) {
             text.current.classList.remove(className)
         }
-        // text.current.ontransitionend = ()=>{
-        //     text.current.classList.remove(className)
-        //     toggler(false)
-        // }
     } 
     function blinkText(texElement: HTMLHeadingElement, className: string, toggler: any) {
         if(textShadowToggler === true) {

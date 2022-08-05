@@ -1,5 +1,5 @@
-import React, { ElementRef, ElementType } from 'react';
-import { useState, useRef, useEffect } from 'react';
+
+import {useState} from 'react';
 import './App.css';
 import sentencesData from './inputData';
 import AppHeader from './components/AppHeader/AppHeader';
@@ -10,7 +10,7 @@ import CheckBox from './components/CheckBox/CheckBox';
 import AppBody from './components/AppBody/AppBody';
 
 const App = ()=> {
-  const [sentenceCounter, setSentenceCounter] = useState<number>(0)
+  const [sentenceCounter, setSentenceCounter] = useState<number>(5)
   const [linesArr, setLinesArr] = useState<HTMLCollectionOf<HTMLElement> |undefined>();
   const [linesBlockTop, setLinesBlockTop] = useState<number | undefined>()
   const [linesBlockBottom, setLinesBlockBottom] = useState<number | undefined>()

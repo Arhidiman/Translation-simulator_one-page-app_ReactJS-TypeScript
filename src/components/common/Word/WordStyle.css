@@ -49,10 +49,6 @@
     transition: top ease 0.3s, right ease 0.3s, bottom ease 0.3s, left ease 0.3s;
 }
 
-
-
-
-
 .fade {
     opacity: 0%;
     transition: all ease 0.3s;

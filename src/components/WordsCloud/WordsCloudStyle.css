@@ -1,11 +1,8 @@
-
-
 .words-cloud {
   height: 200px
 }
 
 .words-cloud-container  {
-    /* height: 100px; */
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     row-gap: 15px;

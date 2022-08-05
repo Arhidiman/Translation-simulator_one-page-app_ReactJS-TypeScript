@@ -1,4 +1,4 @@
-import react, { useEffect, useRef, useState, FC, ReactNode } from "react";
+import {useEffect, useRef, useState, FC, ReactNode} from "react";
 import './WordsCloudStyle.css'
 import Word from '../common/Word/Word'
 
@@ -17,8 +17,8 @@ interface wordsCloudProps {
   setIsElementTransiting: Function,
   setSwitchToNext: Function,
   switchToNext: boolean
-
 } 
+
 const WordsCloud: FC<wordsCloudProps> = ({linesArr,
     wordsList,
     linesBlockTop,  
@@ -82,7 +82,6 @@ const WordsCloud: FC<wordsCloudProps> = ({linesArr,
         setIsElementTransiting,
         switchToNext
         ])
-
 
       return(
         <div ref = {wordsCloud} className='app-body__bottom words-cloud' draggable = 'false'>
