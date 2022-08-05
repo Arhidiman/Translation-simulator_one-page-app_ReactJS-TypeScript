@@ -1,0 +1,59 @@
+.link {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: auto;
+    align-items: center;
+    justify-items: center;
+    text-decoration: none;
+}
+
+.link__image {
+    background-size: 100% 100%;
+    height: 40px;
+    width: 40px;
+}
+
+.link__text {
+    padding-left: 5px;
+    font-size: 20px;
+    color: #000;
+}
+
+.link__text-superscript {
+    font-size: 10px;
+    font-weight: lighter;
+}
+
+.main-page-link .link__image {
+    width: 40px;
+    height: 25px;
+}
+
+.main-page-link .link__text {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.sign-in-link {
+    width: 110px;
+    height: 40px;
+    background: none;
+    border: solid 1px #2875D9;
+    border-radius: 2px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-decoration: none;
+}
+
+.sign-in-link .link__image {
+    width: 22px;
+    height: 22px;
+    fill: #2875D9;
+}
+
+.sign-in-link .link__text {
+    font-size: 17px;
+    font-weight: bold;
+    color: #2875D9;
+}

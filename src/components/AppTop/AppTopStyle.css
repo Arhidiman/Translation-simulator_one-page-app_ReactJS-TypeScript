@@ -1,0 +1,38 @@
+
+.app-body__top {
+    display: flex;
+}
+
+.sentense-container {
+    /* height: 60%;
+    border: solid #595959 2px;
+    border-radius: 15px; */
+}
+
+.bubble {
+    position: relative;
+    box-sizing: border-box;
+    width: 50%;
+    height: 140px;
+    left: 35px;
+    padding: 10px;
+    border-radius: 15px;
+    border: 3px solid #6C6C6C;
+    display: inline-block;
+    
+}
+
+
+.bubble::after {
+    position: absolute;
+    content: '';
+    width: 39px;
+    height: 50px;
+    border-left: 3px solid #6C6C6C;
+    border-bottom: 3px solid #6C6C6C;
+    left: -24px;
+    bottom: 10px;
+    background: #F5F5F5;
+    transform: skewX(-42deg) skewY(-10deg);
+}
+
